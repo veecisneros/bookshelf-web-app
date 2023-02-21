@@ -19,6 +19,25 @@ class Books{
     }
 }
 
+
+//search bar 
+function search_books(){
+let input = document.getElementById('searchBar').value
+input=input.toLowercase();
+let x = document.booklist;
+
+    for ( i= 0; i < x.length; i++) {
+        if(!x[i].innerHTML.toLowerCase().includes(input)){
+            x[i].getElementsByClassName.display="none";
+        }
+        else{
+            x[i].getElementsByClassName.display= booklist;
+        }
+    }
+}
+
+
+
 //adding books from the book-data.js file
 function getBooks(){
     for( let i=0; i < bookData.length; i++){
@@ -40,7 +59,8 @@ return bookTitles
 function bookRender(){
     //rendering the books in my Books page
     const booklist = document.createElement('ul');
-    booklist.replaceChildren(...listofBooks);
+    //spread operator to seperate list from Ul
+    booklist.replaceChildren(...listofBooks);        
     document.body.append(booklist);
 }
 

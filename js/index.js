@@ -4,14 +4,14 @@ class Bookshelf{
     constructor(){
         this.books = []
     }
-    addbook(book){
+    addBook(book){
         this.books.push(book);
-    }
+}
 }
 
 // class with book properties
 class Books{
-    cosntructor(title,author,subject,language){
+    constructor(title,author,subject,language){
         this.title = title
         this.author = author
         this.subject = subject
@@ -19,49 +19,87 @@ class Books{
     }
 }
 
+//checking to see if adding books works
+// let newBook = new Books('cinderella','disney','fairytales', 'english');
+// console.log(newBook)
 
-//search bar 
-function search_books(){
-let input = document.getElementById('searchBar').value
-input=input.toLowercase();
-let x = document.booklist;
+// users add new books here
+const newBookList = document.createElement('ul')
+function addNewBookRender(){
+const myBookshelf =  new Bookshelf
 
-    for ( i= 0; i < x.length; i++) {
-        if(!x[i].innerHTML.toLowerCase().includes(input)){
-            x[i].getElementsByClassName.display="none";
-        }
-        else{
-            x[i].getElementsByClassName.display= booklist;
-        }
-    }
+const addBookBtn = document.getElementById('addbookbtn')
+
+addBookBtn.addEventListener('click', ()=>{
+let title = document.getElementById('title').value;
+let author = document.getElementById('author').value;
+let subject = document.getElementById('subject').value;
+let language = document.getElementById('language').value;
+
+let newBook = new Books (title, author, subject, language)
+myBookshelf.addBook(newBook) 
+
+
+const newAddedBook = document.createElement('li')
+newAddedBook.textContent = newBook.title,newBook.author;
+newBookList.append(newBook)
+document.body.append(newAddedBook);
+});
 }
+addNewBookRender()
 
+//search bar function
 
-
-//adding books from the book-data.js file
-function getBooks(){
-    for( let i=0; i < bookData.length; i++){
-        let bookshelves = new Bookshelf()
-        bookshelves.addbook(`${bookData[i].title}`),(`${bookData[i].author}`),(`${bookData[i].subject}`),(`${bookData[i].language}`)
-        console.log(bookshelves)
-    }
-}
-
-
-//render function w/ .map loop method
+//render function w/ .map loop method 
 let listofBooks = bookData.map((book) => {
-    const bookTitles = document.createElement('li')
+const bookTitles = document.createElement('li')
 bookTitles.textContent = `${book.title} written by ${book.author}`;
-return bookTitles
+
+
+
+//buttons for more info on book when pressed
+const moreInfoButton = document.createElement('button');
+moreInfoButton.textContent = 'more info';
+moreInfoButton.addEventListener('click', ()=> {
+    const additionalInfo = document.createElement('p');
+    additionalInfo.textContent = `${book.subject}, ${book.language}`;
+    bookTitles.appendChild(additionalInfo);
+})
+bookTitles.appendChild(moreInfoButton);
+
+//like button display w/ event listner
+const likeButton = document.createElement('button');
+likeButton.textContent = "❤"
+bookTitles.appendChild(likeButton);
+
+
+// comment section here
+// needs a boolean w/280 limit
+// needs and enter button or an enter function in the addeventlistner
+const commentBtnSetUp = document.createElement('div');
+const commentButton = document.createElement('button');
+commentButton.textContent = 'comments/reviews';
+commentButton.addEventListener('click',()=>{
+    const addCommentsHere = document.createElement('textarea');
+    addCommentsHere.textContent = '';
+    commentBtnSetUp.appendChild(addCommentsHere);
 });
 
-//DOM rendering
+commentBtnSetUp.appendChild(commentButton);
+bookTitles.appendChild(commentBtnSetUp);
+
+return bookTitles;
+});
+
+
 function bookRender(){
-    //rendering the books in my Books page
+//rendering the books in my Books page
+//spread operator to seperate list from Ul
     const booklist = document.createElement('ul');
-    //spread operator to seperate list from Ul
     booklist.replaceChildren(...listofBooks);        
     document.body.append(booklist);
+
 }
 
 bookRender()
+

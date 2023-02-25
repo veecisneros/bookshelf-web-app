@@ -67,8 +67,10 @@ button{
     margin: 5px;
 }
 
+
+
 input{
-    display: inline;;
+    display: inline;
     padding: 10px;
     margin:10px;
     border-radius:15px;
@@ -76,3 +78,26 @@ input{
     background-image: linear-gradient(45deg, #85FFBD 0%, #FFFB7D 100%);
 }
 
+#enbtn{
+    display: inline;
+    padding: 5px;
+}
+
+#debtn{
+    display:inline;
+    padding: 5px;
+}
+
+#frbtn{
+    display:inline;
+    padding: 5px;
+}
+
+#fibtn{
+    display:inline;
+    padding: 5px;
+    
+}
+#fibtn.active{
+    background-color: #C39BD3;
+}

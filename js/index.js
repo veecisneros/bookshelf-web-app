@@ -1,89 +1,78 @@
-//class constructor for books---adding new books
+//creating Bookshelf were books are added
 
 class Bookshelf{
     constructor(){
-        this.books = []
+        this.books = []    //bookshelf.books
     }
     addBook(book){
-        this.books.push(book);
-}
+        this.books.push(book);    //bookshelf.books.add books here
+    }
 }
 
-// class with book properties
 class Books{
     constructor(title,author,subject,language){
-        this.title = title;
+        this.title = title; 
         this.author = author;
         this.subject = subject;
         this.language = language;
     };
 }
 
+//map function, new array 
+function bookRender(){
+    let bookList = document.createElement('ul')
+    let listOfBooks = bookData.map((book)=>{
+    const bookTitles = document.createElement('li');
+    bookTitles.textContent = `${book.title} written by ${book.author}`;
+    bookList.appendChild(bookTitles);
 
 
+    const moreInfoButton = document.createElement('button');
+moreInfoButton.textContent = 'more info';
+moreInfoButton.addEventListener('click', ()=> {
+    const additionalInfo = document.createElement('p');
+    additionalInfo.textContent = `${book.subject}, ${book.language}`;
+    bookTitles.appendChild(additionalInfo);
+});
 
-//checking to see if adding books works
-// let newBook = new Books('cinderella','disney','fairytales', 'english');
-// console.log(newBook)
+bookTitles.appendChild(moreInfoButton);
+document.body.appendChild(bookList);
 
+let commentButton =  document.createElement('button');
+commentButton.textContent = 'comment/reviews';
+commentButton.addEventListener('click', ()=>{
+    const addCommentHere = document.createElement('textarea');
+    addCommentHere.textContent = "";
 
-// filter function to filter by language:
-const languageList = document.createElement('ul');
+//needs a boolean w/280 limit
+    addCommentHere.setAttribute('maxlength','280');
+//submit button for comment
+    let submitButton = document.createElement('button');
+    submitButton.textContent = 'submit';
+    submitButton.addEventListener ('click', ()=>{
+        const clickToSubmit = document.createElement('p');
+        clickToSubmit.textContent = addCommentHere.value;
+        bookTitles.appendChild(clickToSubmit);
+    });
+    bookTitles.appendChild(submitButton);
 
-function BookRender(){
-// const englishBtn = document.createElement('li')
-const lookForEn = document.getElementById('enbtn');
-lookForEn.addEventListener('click',()=>{
-    const enbtn = document.createElement('p');
-    const filteredBooks = bookData.filter((bookTitles => bookTitles.language === 'en'));
-    if (filteredBooks.length === 0){
-        enbtn.textContent = "no books in this language";
-    }else{
-        filteredBooks.forEach((book)=>{
-            const bookTitle = `${book.title} written by ${book.author}`;
-            const bookInfo = document.createElement("li");
-            bookInfo.textContent = bookTitle;
-            enbtn.appendChild(bookInfo);
-          });
+    addCommentHere.addEventListener('input', ()=>{
+        if(addCommentHere.value.length <= 280){
+            submitButton.disabled = false;
+        }else{
+        submitButton.disabled = true;
         }
-        bookTitles.appendChild(enbtn);
-        document.body.appendChild(enbtn);
-      });
-    }
-    BookRender();
+    });
+    bookTitles.appendChild(addCommentHere);
+});
+bookTitles.appendChild(commentButton);
+});  
 
 
-// const lookForDe = document.getElementById('debtn');
-// debtn.addEventlistener('click',()=>{
-//     const germanBooks = bookData.filter((book) => book.language === "de");
-//     debtn.appendChild(languageList)
-// });
-// bookTitles.appendChild(enbtn);
-// document.body.appendChild(enbtn);
+//adding new books to the bookshelf instance
+const myBookshelf = new Bookshelf();
 
-// console.log(lookForDe);
-
-// const lookForFr = document.getElementById('fr-btn')
-// frbtn.addeventlistner('click',()=>{
-    // const frbtn = document.createElement('p');
-    //frbtn.textcontent = filter method here
-// })
-// const lookForFi = document.getElementById('fi-btn')
-// fibtn.addeventlistner('click',()=>{
-    // const fibtn = document.createElement('p');
-    //fibtn.textcontent = filter method here
-// })
-
-// const results = booklist.filter((e)=>{
-//     return applyFilter(e,fileters)
-// });
-
-// users add new books here
-const newBookList = document.createElement('ul');
-const myBookshelf =  new Bookshelf();
-
-function BookRender(){
-const addBookBtn = document.getElementById('addbookbtn');
+let addBookBtn = document.getElementById('addbookbtn');
 addBookBtn.addEventListener('click', () =>{
 let title = document.getElementById('title').value;
 let author = document.getElementById('author').value;
@@ -93,83 +82,49 @@ let language = document.getElementById('language').value;
 let newBook = new Books(title, author, subject, language)
 myBookshelf.addBook(newBook) 
 
-const newAddedBook = document.createElement('li')
-newAddedBook.textContent = `${newBook.title} writen by ${newBook.author}`;
-newBookList.appendChild(newAddedBook)
-document.body.append(newBookList);
-});
+let newAddedBook = document.createElement('li')
+newAddedBook.textContent = `${newBook.title} written by ${newBook.author}`;
+bookList.appendChild(newAddedBook);
 
-}
-BookRender()
-
-//search bar function
-
-//function w/ .map loop method 
-let listofBooks = bookData.map((book) => {
-    const bookTitles = document.createElement('li')
-    bookTitles.textContent = `${book.title} written by ${book.author}`;
-
-// buttons for more info on book when pressed
-const moreInfoButton = document.createElement('button');
+let moreInfoButton = document.createElement('button');
 moreInfoButton.setAttribute('id','moreinfo-btn');
 moreInfoButton.textContent = 'more info';
 moreInfoButton.addEventListener('click', ()=> {
-    const additionalInfo = document.createElement('p');
-    additionalInfo.textContent = `${book.subject}, ${book.language}`;
-    bookTitles.appendChild(additionalInfo);
+    let newAdditionalInfo = document.createElement('p');
+    newAdditionalInfo.textContent = `${newBook.subject}, ${newBook.language}`;
+    newAddedBook.appendChild(newAdditionalInfo);
 });
-bookTitles.appendChild(moreInfoButton);
+newAddedBook.appendChild(moreInfoButton);
+});  
 
-//like button display w/ event listener
-const likeButton = document.createElement('button');
-likeButton.setAttribute('class','like-btn');
-likeButton.textContent = "❤";
-//add event listener if i have time
-// likeButton.addEventListener("click", () =>{
-// });
-bookTitles.appendChild(likeButton);
-
-// comment section here
-const commentButton = document.createElement('button');
-commentButton.setAttribute('id', 'comment-btn');
-commentButton.textContent = 'comments/reviews';
-commentButton.addEventListener ('click',()=>{
-    const addCommentsHere = document.createElement('textarea');
-    addCommentsHere.textContent = "...";
-
-// needs a boolean w/280 limit
-     addCommentsHere.setAttribute('maxlength', '280');
-// needs and enter button or an enter function in the addeventlistner
-     const submitButton = document.createElement('button');
-    submitButton.textContent = "submit";
-    submitButton.setAttribute('id','submit-btn')
-    submitButton.addEventListener ('click',()=>{
-        const clickToSubmit = document.createElement('p');
-        clickToSubmit.textContent = addCommentsHere.value;
-        bookTitles.append(clickToSubmit);
+function filterBooksByLanguage(language) {
+    let filteredBooks = bookData.filter(book => book.language === language);
+    bookList.innerHTML = '';
+    filteredBooks.forEach(book => {
+      const bookTitles = document.createElement('li');
+      bookTitles.textContent = `${book.title} written by ${book.author}`;
+      bookList.appendChild(bookTitles);
     });
-    bookTitles.appendChild(submitButton);
-
-       addCommentsHere.addEventListener('input',()=>{
-        if (addCommentsHere.value.length <= 280){
-            submitButton.disabled = false;
-        }else {
-            submitButton.disabled = true;
-        }
-    });
-    
-    bookTitles.appendChild(addCommentsHere);
-       });
-       bookTitles.appendChild(commentButton);
-       return bookTitles;
-    });
+  }
   
-function bookRender(){
-//rendering the books in my Books page
-//spread operator to seperate list from Ul
-    const booklist = document.createElement('ul');
-    booklist.replaceChildren(...listofBooks);        
-    document.body.append(booklist);
+  document.getElementById('enbtn').addEventListener('click', () => {
+    filterBooksByLanguage('en');
+  });
+  
+  document.getElementById('debtn').addEventListener('click', () => {
+    filterBooksByLanguage('de');
+  });
+  
+  document.getElementById('frbtn').addEventListener('click', () => {
+    filterBooksByLanguage('fr');
+  });
+  
+  document.getElementById('fibtn').addEventListener('click', () => {
+    filterBooksByLanguage('fi');
+    return bookTitles;
+  });
+
+document.body.appendChild(bookList);
 }
 
 bookRender()

@@ -98,6 +98,8 @@ input{
     padding: 5px;
     
 }
-#fibtn.active{
-    background-color: #C39BD3;
+
+#moreinfo{
+    display:inline;
+    padding: 5px;
 }

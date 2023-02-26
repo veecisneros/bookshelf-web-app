@@ -26,19 +26,20 @@ function bookRender(){
     bookTitles.textContent = `${book.title} written by ${book.author}`;
     bookList.appendChild(bookTitles);
 
-
     const moreInfoButton = document.createElement('button');
-moreInfoButton.textContent = 'more info';
+    moreInfoButton.setAttribute('id','moreinfobtn');
+moreInfoButton.textContent = 'subject & language';
 moreInfoButton.addEventListener('click', ()=> {
     const additionalInfo = document.createElement('p');
     additionalInfo.textContent = `${book.subject}, ${book.language}`;
     bookTitles.appendChild(additionalInfo);
-});
+}); 
 
 bookTitles.appendChild(moreInfoButton);
 document.body.appendChild(bookList);
 
 let commentButton =  document.createElement('button');
+commentButton.setAttribute('id','cmntbtn')
 commentButton.textContent = 'comment/reviews';
 commentButton.addEventListener('click', ()=>{
     const addCommentHere = document.createElement('textarea');
@@ -68,7 +69,6 @@ commentButton.addEventListener('click', ()=>{
 bookTitles.appendChild(commentButton);
 });  
 
-
 //adding new books to the bookshelf instance
 const myBookshelf = new Bookshelf();
 
@@ -87,8 +87,8 @@ newAddedBook.textContent = `${newBook.title} written by ${newBook.author}`;
 bookList.appendChild(newAddedBook);
 
 let moreInfoButton = document.createElement('button');
-moreInfoButton.setAttribute('id','moreinfo-btn');
-moreInfoButton.textContent = 'more info';
+moreInfoButton.setAttribute('id','moreinfobtn');
+moreInfoButton.textContent = 'subject & language';
 moreInfoButton.addEventListener('click', ()=> {
     let newAdditionalInfo = document.createElement('p');
     newAdditionalInfo.textContent = `${newBook.subject}, ${newBook.language}`;
@@ -123,8 +123,8 @@ function filterBooksByLanguage(language) {
     filterBooksByLanguage('fi');
     return bookTitles;
   });
-
 document.body.appendChild(bookList);
+return listOfBooks;
 }
 
 bookRender()

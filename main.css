@@ -14,8 +14,8 @@ h2{
 p{
     font-family: 'Roboto';
     font-size: 16px;
-    display:flex;
     flex-wrap: wrap;
+    justify-content: flex-end;
 }
 
 ul{
@@ -34,7 +34,7 @@ font-family: 'Gloock';
 padding:0px;
 display: flex;
 justify-content: flex-end;
-font-size: 30px;
+font-size: 20px;
 }
 
 
@@ -117,7 +117,14 @@ textarea{
 
 img{
     max-height: 400px;
-    justify-content: center;
-    flex-wrap: wrap;
+    float: left; 
+    padding: 0 20px 20px 0;
+}
 
+#bookifiabout{
+    font-family: 'Roboto';
+    font-size: 25px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    color: white;
 }

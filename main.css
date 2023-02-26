@@ -1,14 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Gloock&family=Roboto:wght@300&display=swap');
 body{
     background-color: rgb(133, 205, 253);
-    /* rgb(236, 249, 255);
-    rgb(133, 205, 253); */
 }
 
-h2{
+.booki_div{
     font-family: 'Gloock';
     font-size: 80px; 
-    color:whitesmoke;
+    color: rgb(24, 31, 101);
+    float: right;
 }
 
 p{
@@ -16,27 +15,30 @@ p{
     font-size: 16px;
     flex-wrap: wrap;
     justify-content: flex-end;
+    color: rgb(24, 31, 101);
 }
 
 ul{
     font-family: 'Roboto';
     font-size: 16px;
+    color: rgb(24, 31, 101);
 }
 
 main{
     font-family: 'Gloock';
     font-size: 16px;
     font-weight: 300;  
+    color: rgb(24, 31, 101);
 }
 
 .nav__links li {
 font-family: 'Gloock';
-padding:0px;
+padding:3px;
 display: flex;
 justify-content: flex-end;
 font-size: 20px;
+background: radial-gradient(circle, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
 }
-
 
 .nav__links li a {
     transition: all 0.3s ease 0s;
@@ -126,5 +128,5 @@ img{
     font-size: 25px;
     flex-wrap: wrap;
     justify-content: flex-end;
-    color: white;
+    color:  rgb(24, 31, 101);
 }

@@ -8,12 +8,14 @@ body{
 h2{
     font-family: 'Gloock';
     font-size: 80px; 
-    color:rgb(58, 152, 185);
+    color:whitesmoke;
 }
 
 p{
     font-family: 'Roboto';
     font-size: 16px;
+    display:flex;
+    flex-wrap: wrap;
 }
 
 ul{
@@ -111,4 +113,11 @@ textarea{
     color:black;
     font-family: 'Roboto';
     font-size: 16px;
+}
+
+img{
+    max-height: 400px;
+    justify-content: center;
+    flex-wrap: wrap;
+
 }

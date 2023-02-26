@@ -35,6 +35,7 @@ moreInfoButton.addEventListener('click', ()=> {
     bookTitles.appendChild(additionalInfo);
 }); 
 
+
 bookTitles.appendChild(moreInfoButton);
 document.body.appendChild(bookList);
 
@@ -68,6 +69,7 @@ commentButton.addEventListener('click', ()=>{
 });
 bookTitles.appendChild(commentButton);
 });  
+
 
 //adding new books to the bookshelf instance
 const myBookshelf = new Bookshelf();
@@ -121,10 +123,9 @@ function filterBooksByLanguage(language) {
   
   document.getElementById('fibtn').addEventListener('click', () => {
     filterBooksByLanguage('fi');
-    return bookTitles;
+    return listOfBooks;
   });
 document.body.appendChild(bookList);
-return listOfBooks;
 }
 
 bookRender()
